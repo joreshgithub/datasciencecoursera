@@ -1,0 +1,29 @@
+---
+title: "Map"
+author : "Suresh"
+---
+```{r}
+Sys.Date()
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Demonstation of using Leaflet package
+### The following code will create a map of 100 randoms latitudes and longitudes each having a random but different weight.  It will show how the points can be clustered and the size of the circle can be modified by using a separate variable value.
+
+Create the dataframe of data points
+```{r}
+library(leaflet)
+set.seed(100)
+df <- data.frame(lat=runif(100,min=18.54,max=18.55), lng=runif(100,min=73.8,max=73.82), pop=sample.int(100,100, replace=TRUE))
+head(df)
+```
+
+Draw the map.  The map is drawn for 100 random coordinates which are size using the 'pop' variable and clustered dynamically depending on the resolution.
+```{r}
+myMap <- df %>% leaflet() %>% addTiles() %>% addCircleMarkers(clusterOptions=markerClusterOptions(), radius=df$pop)
+myMap
+```
+
