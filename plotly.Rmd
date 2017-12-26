@@ -1,0 +1,15 @@
+---
+title: "Plotly Demo"
+output: html_document
+---
+```{r}
+Sys.time()
+```
+
+#Demo of the PLotly package for plotting mtcars data
+## The plot below shows the relationship between Weight, MPG and Horsepower of cars in the dataset with Number of cylinders as the color dimension.
+```{r echo=FALSE}
+library(plotly)
+plot_ly(mtcars, x=~wt, y=~mpg, z=~hp, type="scatter3d", mode="markers", color=~as.factor(cyl))
+```
+
